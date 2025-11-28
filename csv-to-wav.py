@@ -5,7 +5,7 @@ from scipy.io.wavfile import write
 # Parámetros
 CSV_FILE = "muestras-daq.csv"
 WAV_FILE = "muestras-daq.wav"
-FS = 8000 
+FS = 6800
 
 # Leer datos del CSV
 tiempos = []
@@ -22,7 +22,7 @@ signal = np.array(voltajes)
 
 # Normalizar la señal a rango -32767..32767 (16 bits PCM)
 signal_norm = signal / np.max(np.abs(signal))   # Escala entre -1 y 1
-signal_int16 = np.int16(signal_norm * 32767)
+signal_int16 = np.int16(signal_norm * 4096)
 
 # Guardar como WAV
 write(WAV_FILE, FS, signal_int16)

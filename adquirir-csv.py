@@ -6,7 +6,7 @@ import numpy as np
 
 # Configuración del ADC
 adc = MCP3202(channel=0, device=0)
-num_muestras = 10000
+num_muestras = 100000
 # Nuevo nombre de archivo
 NOMBRE_ARCHIVO = 'muestras-daq.csv' 
 
