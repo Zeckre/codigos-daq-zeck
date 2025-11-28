@@ -12,30 +12,25 @@ NOMBRE_ARCHIVO = 'muestras-daq.csv'
 
 # Parámetros de conversión a Voltios 
 vref = 3.3
-num_bits = 2048.0
+num_bits = 4096.0
 to_volts = vref / num_bits
 offset = 1.5
 
 # Inicio del muestreo
 print(f"Iniciando recolección de {num_muestras} muestras")
-
 datos = []
 inicio_tiempo = time.time()
 
 try:
     for i in range(num_muestras):
         # Leer el canal 0 (A0)
-        valor_crudo = adc.value
-        
-        # Convertir a Voltaje del ADC
-        vin = valor_crudo * to_volts
-        voltaje = vin - offset
+        voltios = adc.value * vref
         
         # Tiempo total de muestreo
         tiempo_actual = time.time() - inicio_tiempo
         
         # Guardamos el voltaje sin offset en la lista:
-        datos.append([tiempo_actual, voltaje]) 
+        datos.append([tiempo_actual, voltios]) 
 
 except KeyboardInterrupt:
     print("Recolección interrumpida por el usuario.")
